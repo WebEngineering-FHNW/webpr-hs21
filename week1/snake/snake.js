@@ -18,11 +18,13 @@ let snake = [
 let food = {x: 15, y: 15};
 
 function snakeEquals(a, b) { 
-	/* fill here */
+	return a.x === b.x && b.y === b.y
 }
 
 function changeDirection(orientation) {
     /* fill here */
+    const idx = orientation.indexOf(direction);
+    direction = orientation[idx + 1];
 }
 
 function start() {
@@ -63,8 +65,10 @@ function nextBoard() {
         food.y = Math.floor(Math.random() * 20);
     } else {
         /* fill here */ // no food found => no growth despite new head => remove last element
+        snake.pop()
     }
 
+    snake.unshift(head)
     /* fill here */; // put head at front of the list
 }
 
