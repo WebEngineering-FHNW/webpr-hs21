@@ -21,14 +21,13 @@ let snake = [
 let food = Pair(15)(15);
 
 // function snakeEquals(a, b) { return a.x === b.x && a.y === b.y }
-const pairEq = a => b =>  undefined; // todo: your code here
+const pairEq = a => b =>  a(fst) === b(fst) && a(snd) === b(snd);
 
 // Pair + Pair = Pair        // Monoid
-const pairPlus = a => b =>  undefined; // todo: your code here
+const pairPlus = a => b => Pair (a(fst)+b(fst)) (a(snd) + b(snd));
 
 // Function and Pair = Pair  // Functor
-const pairMap = f => p =>  undefined; // todo: your code here
-
+const pairMap = f => p =>  Pair ( f(p(fst)) ) ( f(p(snd)) );
 
 function changeDirection(orientation) {
     const idx = orientation.indexOf(direction);
@@ -42,7 +41,9 @@ function changeDirection(orientation) {
 */
 function safeGetElementById(id) {
     const result = document.getElementById(id);
-    return result === undefined; // todo: your code here
+    return result === null
+        ? Left("cannot find element with id '"+ id + "'")
+        : Right(result);
 }
 
 const log = s => console.log(s);
@@ -50,7 +51,9 @@ const log = s => console.log(s);
 function start() {
 
     // todo: if safeGetElementById("canvas") yields an error message, log it. Otherwise startWithCanvas
-
+    safeGetElementById("canvas")
+        (log)
+        (startWithCanvas);
 }
 
 const startWithCanvas = canvas => {
@@ -80,11 +83,11 @@ function nextBoard() {
     const max = 20;
     const oldHead = snake[0];
 
-    const newHead = undefined; // todo: your code here: old head plus direction
-    const head    = undefined; // todo: your code here: new head put in bounds
+    const newHead = pairPlus (oldHead)  (direction);
+    const head    = pairMap  (inBounds) (newHead);
 
     const pickRandom = () => Math.floor(Math.random() * max);
-    if (true) {  // todo: have we found any food?
+    if (pairEq(head)(food)) {  // todo: have we found any food?
         food = Pair(pickRandom())(pickRandom());
     } else {
         snake.pop(); // no food found => no growth despite new head => remove last element
