@@ -6,15 +6,14 @@
 </head>
 <body>
 
-    <script src="function/function.js"></script>
-    <script src="function/functionTest.js"></script>
+<script>
+    const names = ["function", "lambda", "snake"];
 
-    <script src="lambda/lambda.js"></script>
-    <script src="lambda/lambdaTest.js"></script>
-
-    <script src="snake/snake.js"></script>
-    <script src="snake/snakeTest.js"></script>
-
+    names.forEach(name => {
+        document.writeln('<script src="' + name + '/' + name + '.js"><' + "/script>");
+        document.writeln('<script src="' + name + '/' + name + 'Test.js"><' + "/script>");
+    });
+</script>
 
 </body>
 </html>

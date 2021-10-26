@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClassCheck</title>
+</head>
+<body>
+<script>
+
+    /* Aufgabe Q9f */
+
+    /* attempt 1
+    const bonusCalculation = employee => eval(bonusFormula.value);
+    const e = {revenue: 10000, bonus: null};
+    bonusCalculation(e);
+    e.bonus === e.revenue * factor_;
+    */
+
+    /* attempt 1
+    const bonusCalculation = Function("employee", "return " + bonusFormula);
+    const e = {revenue: 10000, bonus: null};
+    bonusCalculation(e);
+    e.bonus === e.revenue * factor_;
+
+     */
+
+    //const bonusCalculation = employee => eval(bonusFormula.value);
+
+    const bonusCalculation = Function("employee", "return " + bonusFormula);
+
+    const e = {revenue: 10000, bonus: null};
+    let factor_ = Math.random() * (1.0 - 0.1) + 0.1
+
+    bonusCalculation(e);
+    e.bonus === e.revenue * factor_;
+    document.writeln(e.bonus === e.revenue * factor_);
+
+
+    /*
+        const bonusCalculation = Function("employee", "return " + employee.formula );
+
+        const e = {revenue: 10000, bonus: null};
+        bonusCalculation(e);
+        e.bonus === e.revenue * factor_;
+        document.writeln(e.bonus === e.revenue * factor_);
+        */
+
+    /*
+    const userFunction = document.getElementById('user_function');
+    const canvas = document.getElementById('canvas');
+
+
+    // todo: how to display; NEVER USE!
+    const f = x => eval(userFunction.value);
+    userFunction.onchange = _ => display(canvas, f);
+
+
+
+    const userFunction = document.getElementById('user_function');
+const canvas = document.getElementById('canvas');
+
+const f = Function("x", "return " +  userFunction.value);
+userFunction.onchange = _ => display(canvas, f);
+display(canvas, f);
+     */
+
+
+</script>
+</body>
+</html>

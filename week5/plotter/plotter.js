@@ -1,20 +1,24 @@
-
-const minX =  0;
-const maxX =  6;
+const minX = 0;
+const maxX = 6;
 const minY = -1;
-const maxY =  1;
+const maxY = 1;
+
 
 function start() {
     const userFunction = document.getElementById('user_function');
-    const canvas       = document.getElementById('canvas');
+    const canvas = document.getElementById('canvas');
 
-    // todo: how to display?
 
+    // todo: how to display
+    //const f = x => eval(userFunction.value);
+    const f = Function("x", "return " +  userFunction.value);
+    userFunction.onchange = _ => display(canvas, f);
+    display(canvas, f);
 }
 
 function display(canvas, f) {
     // clear
-    const context     = canvas.getContext("2d");
+    const context = canvas.getContext("2d");
     context.fillStyle = "papayawhip";
     context.fillRect(0, 0, canvas.width, canvas.height);
     // draw the function plot
@@ -39,5 +43,5 @@ const normalizeY = height => y => {
 
 const normalizeX = width => x => {
     const scaleFactor = width / (maxX - minX);
-    return ( x - minX) * scaleFactor;
+    return (x - minX) * scaleFactor;
 };
