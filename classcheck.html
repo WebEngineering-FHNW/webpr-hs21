@@ -6,6 +6,14 @@
 </head>
 <body>
 <script>
+    let factor_ = Math.random() * (1.0 - 0.1) + 0.1
+    let bonusFormula = "employee.revenue * " + factor_;
+
+    const bonusCalculation = employee => Function("employee", "return bonusFormula ");
+
+    const e = {revenue: 10000, bonus: null};
+    bonusCalculation(e);
+    document.writeln(e.bonus === e.revenue * factor_);
 
     /* Aufgabe Q9f */
 
@@ -26,14 +34,14 @@
 
     //const bonusCalculation = employee => eval(bonusFormula.value);
 
-    const bonusCalculation = Function("employee", "return " + bonusFormula);
+    /*const bonusCalculation = Function("employee", "return " + bonusFormula);
 
     const e = {revenue: 10000, bonus: null};
     let factor_ = Math.random() * (1.0 - 0.1) + 0.1
 
     bonusCalculation(e);
     e.bonus === e.revenue * factor_;
-    document.writeln(e.bonus === e.revenue * factor_);
+    document.writeln(e.bonus === e.revenue * factor_);*/
 
 
     /*
