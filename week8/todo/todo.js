@@ -3,13 +3,16 @@ function startTodo() {
 
 }
 
+let currentTodoIndex = 0;
 function addTodo() {
     const container = document.getElementById("todoContainer");
-    container.innerHTML = `<tr>
+    container.innerHTML += `
+        <tr>
             <td>
-                <label for="todo0">First Todo:</label>
-                <input type="text" name="todo0" id="todo0" value="my first todo!">
+                <label for="todo${currentTodoIndex}">First Todo:</label>
+                <input type="text" name="todo${currentTodoIndex}" 
+                       id="todo${currentTodoIndex}" value="my first todo!">
             </td>
-        </tr>`
-
+        </tr>`;
+    currentTodoIndex += 1;
 }
