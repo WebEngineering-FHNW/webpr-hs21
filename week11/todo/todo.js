@@ -22,20 +22,20 @@ const TodoController = () => {
         todoModel.add(newTodo);
         return newTodo;
     };
-//    const scheduler = Scheduler();
+    const scheduler = Scheduler();
     const addFortuneTodo = button => {
-//        button.disabled = true;
+       button.disabled = true;
         const newTodo = Todo();
         todoModel.add(newTodo);
         newTodo.setText("...");
 
-//        scheduler.add( ok => {
+       scheduler.add( ok => {
             fortuneService( text => {
                 newTodo.setText(text);
-//                button.disabled = false;
+                button.disabled = false;
                 ok();
             });
-//        });
+       });
 
 
         return newTodo;
