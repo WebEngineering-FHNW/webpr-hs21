@@ -11,8 +11,17 @@
 <script>
     // Example
 
-    // 'https://jsonplaceholder.typicode.com/todos/1'
+    // fetch('https://jsonplaceholder.typicode.com/todos/1')
+    //     .then( resp => resp.json() )
+    //     .then( todo => todo.title )
+    //     .then( title => out.textContent = title);
 
+    const doit = async url => {
+        const resp = await fetch(url);
+        const todo = await resp.json();
+        out.textContent = "title is: " + todo.title;
+    }
+    doit('https://jsonplaceholder.typicode.com/todos/1')
 
 </script>
 
