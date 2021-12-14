@@ -2,7 +2,7 @@
 import { pi, a, b, setA, setB } from './mod.js'  // <- note the URL format !
 import { Suite }                from '../util/test.js'
 
-export const modSuite = Suite('mod');
+const modSuite = Suite('mod');
 
 modSuite.add("const", assert => {
 

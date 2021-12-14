@@ -15,6 +15,7 @@ const pi = Math.PI;
 let a = null; // these variables are exported as read-only
 let b = null;
 
+
 const setA = v => a = v;
 const setB = v => b = v;
 

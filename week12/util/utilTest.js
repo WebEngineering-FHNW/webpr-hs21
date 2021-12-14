@@ -1,5 +1,8 @@
 // requires util.js
 
+import "./util.js"
+import {Suite} from "./test.js"
+
 const util = Suite("util");
 
 // extending the prototype of many objects

@@ -11,6 +11,7 @@ const pi = Math.PI;
 let a = null; // these variables are exported as read-only
 let b = null;
 
+
 const setA = v => a = v;
 const setB = v => b = v;
 
@@ -131,58 +132,46 @@ modSuite.add("singleton", assert => {
 
 modSuite.run();
 
-/**
- * @module Person (just an immutable product type)
- */
+// https://stackoverflow.com/questions/10993824/do-something-n-times-declarative-syntax
 
-// ctor
+const timesFunction = function(callback) {
+  if( isNaN(parseInt(Number(this.valueOf()))) ) {
+    throw new TypeError("Object is not a valid number");
+  }
+  for (let i = 0; i < Number(this.valueOf()); i++) {
+    callback(i);
+  }
+};
 
-const Person =
-    firstname =>
-    lastname  =>
-    Object.seal( selector  => selector (firstname) (lastname) );
+String.prototype.times = timesFunction;
+Number.prototype.times = timesFunction;
 
+// requires util.js
 
-// getters
+const util = Suite("util");
 
-const firstname = firstname => _ => firstname;
-const lastname  = _ => lastname  => lastname;
-const setLastname  = person => ln => Person (person(lastname)) (ln);
+// extending the prototype of many objects
+util.test("times-num", assert => {
 
-// module "methods"
+    const collect = [];
 
-const toString = person => 'Person ' + person(firstname) + " " +  person(lastname);
+    (10).times( n => collect.push(n) );
 
-const equals   = p1 => p2 =>
-    p1(firstname) === p2(firstname) &&
-    p1(lastname)  === p2(lastname);
+    assert.is(collect.length, 10);
+    assert.is(collect[0], 0);
+    assert.is(collect[9], 9);
 
-const toObj = person => ({
-   firstname: person(firstname),
-   lastname:  person(lastname)
 });
 
-const toPerson = personObj => Person (personObj.firstname) (personObj.lastname);
+util.test("times-str", assert => {
 
-// todo: the line below should be uncommented
+    const collect = [];
 
-const person = Suite("person");
+    '10'.times( n => collect.push(n) );
 
-person.test("use", assert => {
-
-    const dierk = Person ("Dierk") ('König');
-
-    assert.is(dierk(firstname), "Dierk");
-
-    const gently = setLastname(dierk)("Gently");
-
-    assert.is( gently(lastname), "Gently");
-
-    assert.true(   equals (dierk) (dierk)  );
-    assert.true( ! equals (dierk) (gently) );
-
-    assert.true( equals (dierk) (toPerson(toObj(dierk))) );
-    assert.is( toString(dierk), 'Person Dierk König');
+    assert.is(collect.length, 10);
+    assert.is(collect[0], 0);
+    assert.is(collect[9], 9);
 
 });
 

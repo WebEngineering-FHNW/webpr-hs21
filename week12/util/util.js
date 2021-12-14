@@ -1,5 +1,7 @@
 // https://stackoverflow.com/questions/10993824/do-something-n-times-declarative-syntax
 
+export { timesFunction }
+
 const timesFunction = function(callback) {
   if( isNaN(parseInt(Number(this.valueOf()))) ) {
     throw new TypeError("Object is not a valid number");
