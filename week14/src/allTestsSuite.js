@@ -2,6 +2,7 @@
 import { total }      from "./kolibri/util/test.js";
 import { versionInfo} from "./kolibri/version.js";
 
+import './crazyTest.js';
 import './refresherTest.js';
 import '../src/examples/allExampleTestsSuite.js';
 import '../src/kolibri/allKolibriTestsSuite.js';
