@@ -105,12 +105,12 @@ crazySuite.add("numbers", assert => {
 
 crazySuite.add("compare", assert => {
 
-    // assert.is(1 < 2 < 3 ,            );
-    // assert.is(3 > 2 > 1 ,            );
+    assert.is(1 < 2 < 3 ,            true);
+    assert.is(3 > 2 > 1 ,            false);
 
-    // assert.is( {} == {} ,            );
-    // assert.is( {} >  {} ,            );
-    // assert.is( {} >= {} ,            );
+    assert.is( {} == {} ,            false);
+    assert.is( {} >  {} ,            false);
+    assert.is( {} >= {} ,            true);
 
 });
 
